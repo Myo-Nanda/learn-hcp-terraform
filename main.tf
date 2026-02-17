@@ -33,7 +33,7 @@ module "vpc" {
 
 
 resource "aws_instance" "app_server" {
-  ami           = data.aws_ami.ubuntu.id
+  ami           = "ami-0249e9b9816d90e03"
   instance_type = var.instance_type
 
   vpc_security_group_ids = [module.vpc.default_security_group_id]
