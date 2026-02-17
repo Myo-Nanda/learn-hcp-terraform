@@ -11,10 +11,10 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"]
+    values = ["al2023-ami-2023.10.20260202.2-kernel-6.1-x86_64*"]
   }
 
-  owners = ["099720109477"] # Canonical
+  owners = ["137112412989"] # Canonical
 }
 
 module "vpc" {
@@ -33,7 +33,7 @@ module "vpc" {
 
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-0249e9b9816d90e03"
+  ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
   vpc_security_group_ids = [module.vpc.default_security_group_id]
